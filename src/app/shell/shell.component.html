@@ -1,0 +1,16 @@
+<div appMovable class="shell-wrap">
+  <p class="shell-top-bar"> {{ topBarMessage }}</p>
+  <ul (click)="requestFocus()" class="shell-body">
+    <li *ngFor="let cmd of commands">{{ cmd }}</li>
+    <ng-container #commands></ng-container>
+    <li>
+      <input #userInput
+             spellcheck="false"
+             id="userInput"
+             [(ngModel)]="input"
+             (keydown)="onKeyDown($event)"
+             class="shell-input"
+             type="text">
+    </li>
+  </ul>
+</div>

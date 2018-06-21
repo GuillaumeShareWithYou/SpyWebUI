@@ -1,0 +1,66 @@
+$fontColor: #45D40C;
+$font: 0.8rem 'Andale Mono', Consolas, 'Courier New';
+$shellHeight: 500px;
+.shell-wrap {
+  resize: both;
+  width: 500px;
+  margin: 100px auto 0 auto;
+  box-shadow: 0 0 30px rgba(0,0,0,0.4);
+  border-radius: 3px;
+  min-height: $shellHeight;
+
+}
+
+.shell-top-bar {
+  text-align: center;
+  color: #525252;
+  padding: 5px 0;
+  margin: 0;
+  text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+  font-size: 0.85em;
+  border: 1px solid #CCCCCC;
+  border-bottom: none;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+
+  background: linear-gradient(to bottom,  #f7f7f7 0%,#B8B8B8 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#B8B8B8',GradientType=0 ); /* IE6-9 */
+}
+
+.shell-body {
+  margin: 0;
+  padding: 5px;
+  list-style: none;
+  background: #141414;
+  color: $fontColor;
+  font: $font;
+  line-height: 1.6em;
+  max-height: $shellHeight;
+  overflow: auto;
+  min-height: inherit;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.shell-body li:before {
+  content: '$';
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.shell-body li {
+  word-wrap: break-word;
+  position: relative;
+  padding: 0 0 0 15px;
+}
+.shell-input {
+  background-color: transparent;
+  border: none;
+  user-select: none;
+  color: $fontColor;
+  font: $font;
+  width: 100%;
+  outline: none;
+}
+
