@@ -1,18 +1,24 @@
 $fontColor: #45D40C;
 $font: 0.8rem 'Andale Mono', Consolas, 'Courier New';
 $shellHeight: 500px;
+$shellWidth: 800px;
 .shell-wrap {
+  position: absolute;
   resize: both;
-  width: 500px;
-  margin: 100px auto 0 auto;
-  box-shadow: 0 0 30px rgba(0,0,0,0.4);
+  width: $shellWidth;
+  /*margin: 100px auto 0 auto;*/
+  left: 50vh;
+  top: 30vh;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
   border-radius: 3px;
   min-height: $shellHeight;
 
 }
 
 .shell-top-bar {
-  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
   color: #525252;
   padding: 5px 0;
   margin: 0;
@@ -25,6 +31,16 @@ $shellHeight: 500px;
 
   background: linear-gradient(to bottom,  #f7f7f7 0%,#B8B8B8 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#B8B8B8',GradientType=0 ); /* IE6-9 */
+  .shell-top-bar-title{
+    text-align: center;
+    grid-column-start: 2;
+  }
+  .closeButton {
+    grid-column-start: 3;
+    justify-self: end;
+    margin-right: 10px;
+    cursor: pointer;
+  }
 }
 
 .shell-body {
@@ -40,19 +56,39 @@ $shellHeight: 500px;
   min-height: inherit;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
+  cursor: text;
 }
 
+/*
 .shell-body li:before {
   content: '$';
   position: absolute;
   left: 0;
   top: 0;
 }
+.shell-body li.isResponse:before {
+    content: '=';
+    color: blue;
+}
+*/
 
 .shell-body li {
   word-wrap: break-word;
   position: relative;
   padding: 0 0 0 15px;
+
+  display: grid;
+  grid-template-columns: 20px 1fr;
+
+  &.danger {
+    color: red;
+  }
+  &.warning {
+    color: yellow;
+  }
+  &.success {
+    color: #8df78d;
+  }
 }
 .shell-input {
   background-color: transparent;
@@ -63,4 +99,3 @@ $shellHeight: 500px;
   width: 100%;
   outline: none;
 }
-

@@ -18,14 +18,12 @@ export class MovableDirective extends DraggableDirective {
       x: event.clientX - this.position.x,
       y: event.clientY - this.position.y
     };
-    console.log('start moving!');
   }
 
   @HostListener('dragMove', ['$event']) onDragMove(event: PointerEvent) {
     this.position.x = event.clientX - this.startPosition.x;
     this.position.y = event.clientY - this.startPosition.y;
 
-    console.log(this.position);
   }
 
   @HostListener('dragStop', ['$event']) onDragStop(event: PointerEvent) {

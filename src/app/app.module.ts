@@ -4,27 +4,39 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {MatTableModule} from '@angular/material';
 import {ShellComponent} from './shell/shell.component';
 import {DraggableModule} from './draggable/draggable.module';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import {ApiInterceptor} from './service/api-interceptor.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ShellComponent
+    ShellComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatTableModule,
     HttpClientModule,
     DraggableModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiInterceptor,
+      multi: true
+    }
+  ],
+  bootstrap: [AppComponent],
+  entryComponents: [ShellComponent]
 })
 export class AppModule { }

@@ -1,12 +1,22 @@
 <div appMovable class="shell-wrap">
-  <p class="shell-top-bar"> {{ topBarMessage }}</p>
-  <ul (click)="requestFocus()" class="shell-body">
-    <li *ngFor="let cmd of commands">{{ cmd }}</li>
-    <ng-container #commands></ng-container>
-    <li>
+  <div  class="shell-top-bar">
+    <div class="shell-top-bar-title">
+      {{ topBarMessage }}
+    </div>
+    <a (click)="closeWindow()" class="closeButton">
+      <i class="fas fa-times-circle"></i>
+    </a>
+  </div>
+  <ul #shellBody appDraggable (dragStart)="$event.stopPropagation()" (click)="requestFocus()" class="shell-body">
+    <li *ngFor="let cmd of commands" [class]="cmd.alert" class="commandLine" >
+      <div> {{ cmd.isResponse ? '' : commandSymbol}}</div>
+      <div [innerHtml]="cmd.content"></div>
+    </li>
+    <li class="commandLine">
+      <div>{{ commandSymbol }}</div>
       <input #userInput
-             spellcheck="false"
              id="userInput"
+             spellcheck="false"
              [(ngModel)]="input"
              (keydown)="onKeyDown($event)"
              class="shell-input"

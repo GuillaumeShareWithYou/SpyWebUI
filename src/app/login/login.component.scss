@@ -1,0 +1,12 @@
+form {
+  width: 500px;
+  margin: 50vh auto;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 15px;
+  button {
+    grid-column-start: 2;
+    justify-self: start;
+  }
+}
